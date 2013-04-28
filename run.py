@@ -41,6 +41,7 @@ if __name__ == '__main__':
         b = IRCBot(config['irc']['channels'])
         def __init():
             b.connect(config['irc']['host'][0], config['irc']['host'][1], config['irc']['nickname'])
+            return b
         def __notifier(m):
             b.connection.privmsg(config['irc']['channels'][0], m) 
         # Threads
