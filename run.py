@@ -39,13 +39,15 @@ if __name__ == '__main__':
     if pid == 0:
         # Initialize
         b = IRCBot(config['irc']['channels'])
-        b.connect(config['irc']['host'][0], config['irc']['host'][1], config['irc']['nickname'])
-        
+        def __init():
+            b.connect(config['irc']['host'][0], config['irc']['host'][1], config['irc']['nickname'])
+        def __notifier(m):
+            b.connection.privmsg(config['irc']['channels'][0], m) 
         # Threads
         threads = []
 
         # Add services
-        threads.append(threading.Thread(target=wifi.start, args=(config['irc']['channels'][0],b,)))
+        threads.append(threading.Thread(target=wifi.start, args=(__init,__notifier)))
         threads.append(threading.Thread(target=RemoteController.mainloop, args=(config['remote']['port'],)))
         threads.append(threading.Thread(target=b.start))
         # launch services
