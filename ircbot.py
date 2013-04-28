@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import irc.client
+import hw.net as n
 import sandbox
 
 class IRCBot(irc.client.SimpleIRCClient):
@@ -27,7 +28,9 @@ class IRCBot(irc.client.SimpleIRCClient):
             msg = msg.split(' ')
             cmd = msg[0].upper()
             param = ' '.join(msg[1:])
-            if cmd == '!PY':
+            if cmd == '!IP':
+                self.connection.privmsg(event.target, n.net_ip()) 
+            elif cmd == '!PY':
                 try:
                     r = str(sandbox.eval(param))
                 except Exception,e:
