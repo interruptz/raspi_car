@@ -32,6 +32,7 @@ class RemoteController(object):
                         break
                 except socket.error:
                     char = -1
+                print char
                 if char != -1:
                     if char == ord('d'): Car.right()
                     elif char == ord('a'): Car.left()
