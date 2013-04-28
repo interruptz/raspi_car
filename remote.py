@@ -36,11 +36,12 @@ class RemoteController(object):
                     if char == ord('d'): Car.right()
                     elif char == ord('a'): Car.left()
                     elif char == ord('w'):
-                        if not bb.is_blocked(): 
+                        if True or not bb.is_blocked(): 
                             Car.up()
                         else:
                             Car.stop()
                     elif char == ord('s'): Car.down()
+                    elif char == ord('q'): Car.stop()
                     dt = datetime.datetime.now()
                     idle = 0
                 elif idle >= 2:
