@@ -20,10 +20,10 @@ class RemoteController(object):
         while True:
             try:
                 client, addr = sck.accept()
+                client.setblocking(0)
             except socket.error:
                 time.sleep(0.1)
                 continue
-            print addr
             while True:
                 try:
                     t = client.recv(1)
@@ -32,7 +32,6 @@ class RemoteController(object):
                         break
                 except socket.error:
                     char = -1
-                print char
                 if char != -1:
                     if char == ord('d'): Car.right()
                     elif char == ord('a'): Car.left()
